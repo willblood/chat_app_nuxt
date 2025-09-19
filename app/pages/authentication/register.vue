@@ -62,17 +62,10 @@
   const password_confirmation = ref('')
   const error = ref('')
   const handleSignup = async () =>{
-    error.value = ''
     if(password.value !== password_confirmation.value){
       error.value = 'Password and Confirm Password do not match'
       return
     }
-    console.log({
-          name: name.value,
-          username: username.value,
-          password: password.value,
-          password_confirmation: password_confirmation.value
-        })
     try{
       await $fetch('http://localhost:3000/api/users',{
         method: 'POST',
