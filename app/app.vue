@@ -1,4 +1,5 @@
 <template lang ="pug">
   .div
-    nuxt-page    
+  NuxtLayout
+    nuxt-page  
 </template>

@@ -1,3 +1,8 @@
 <template lang ="pug">
-  p All chat here
+
 </template>
+<script setup lang="js">
+  definePageMeta({
+    layout: 'chat'
+  })
+</script>

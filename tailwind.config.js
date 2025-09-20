@@ -23,6 +23,11 @@ module.exports = {
           800: '#1e40af',
           900: '#1e3a8a',
         },
+        barca: {
+          blue: '#004D98',
+          red: '#A50044',
+          yellow: '#EDBB00',
+        },
         secondary: {
           50: '#f9fafb',
           100: '#f3f4f6',
