@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --color-barca-blue: #004D98;
+  --color-barca-red: #A50044;
+  --color-barca-yellow: #EDBB00;
+}
