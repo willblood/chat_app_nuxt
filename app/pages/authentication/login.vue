@@ -36,7 +36,6 @@
           password: password.value,
         }
       })
-      console.log(res)
       if (res.token) {
         const authToken = useCookie('authToken')
         authToken.value = res.token
