@@ -7,26 +7,30 @@
 </template>
 
 <script setup lang="js">
-import { watchDebounced } from '@vueuse/core';
+import { watchDebounced } from '@vueuse/core'
+const searchContent = ref('')
+const emit = defineEmits(['userSearchResults'])
+const errorMessage = ref('')
 
-  const searchContent = ref ('')
-  watchDebounced(searchContent, async(newValue) => {
-    if (newValue.trim() > 2){
-      const emit = defineEmits(['userSearchResults'])
-      const errorMessage = ref('')
-      const res = await $fetch('http://localhost:3000/api/search',{
+watchDebounced(searchContent, async (newValue) => {
+  emit('userSearchResults', [])   // Clear previous results
+  if (newValue.trim() !== '' && newValue.length >= 3) {
+    try {
+      const res = await $fetch('http://localhost:3000/api/search/users', {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${useCookie('authToken').value || ''}`
+        },
         body: {
-          query: newValue
+          search: newValue
         }
       })
-      if (res.ok){
-        emit('userSearchResults', res.data)
-      }
-      else{
-        errorMessage.value = res.errorMessage || 'Search failed'
-        emit('userSearchResults', [])
-      }
+      emit('userSearchResults', res)
+    } catch (e) {
+      errorMessage.value = e?.errorMessage || 'Search failed'
+      emit('userSearchResults', [])
+      console.error('Search error:', errorMessage.value)
     }
-  }, { debounce: 500 }); 
+  }
+}, { debounce: 500 })
 </script>
