@@ -8,7 +8,7 @@
         div(v-for="(msg, index) in chatMessages" :key="index" :class="getMessageContainerClass(msg)")
           //- Avatar
           img(
-            :src="msg.user === currentUser ? currentUserAvatar : otherUserAvatar"
+            :src="msg.user_id === currentUser ? currentUserAvatar : otherUserAvatar"
             :alt="msg.user"
             class="w-8 h-8 rounded-full object-cover"
           )
@@ -77,6 +77,7 @@
       { channel: "ChatChannel", room: roomId },
       {
         received(data) {
+          console.log("Received data:", data)
           chatMessages.value.push(data)
         },
         speak(messageContent) {
@@ -121,13 +122,13 @@
 
   // --- Helper functions for classes ---
   function getMessageClass(msg) {
-    return msg.user !== currentUser
+    return msg.user_id !== currentUser
       ? 'bg-barca-blue rounded-lg rounded-tl-none p-3 shadow-md max-w-md'
       : 'bg-barca-red text-white rounded-lg rounded-tr-none p-3 shadow-md max-w-md'
   }
 
   function getMessageContainerClass(msg) {
-    return msg.user !== currentUser
+    return msg.user_id !== currentUser
       ? 'flex items-start space-x-2'
       : 'flex items-start justify-end space-x-2'
   }
