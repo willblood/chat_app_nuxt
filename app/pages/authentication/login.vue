@@ -36,8 +36,10 @@
           password: password.value,
         }
       })
-      if (res.token) {
+      if (res) {
         const authToken = useCookie('authToken')
+        const userId = useCookie('userId')
+        userId.value = res.user_id
         authToken.value = res.token
         await navigateTo('/chats');
       } else {
