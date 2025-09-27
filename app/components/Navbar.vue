@@ -1,5 +1,5 @@
 <template lang="pug">
-  .flex.items-center.justify-between.h-16.bg-barca-blue.border-b.border-gray-200
+  .flex.items-center.justify-between.h-16.bg-barca-blue.border-b.border-gray-200.p-5
     //- Left side
     .flex.items-center.ml-4
       button(class="md:hidden mr-4 hamburger focus:outline-none" @click="$emit('toggleSidebar')")
